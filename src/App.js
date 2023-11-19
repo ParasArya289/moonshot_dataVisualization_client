@@ -1,11 +1,13 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+import { BarChartComponent } from "./Components/BarChartComponent";
+import { LineChartComponent } from "./Components/LineChartComponent";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-    <h1>This is frontend</h1>
+    <div>
+      <BarChartComponent />
+      <LineChartComponent />
     </div>
   );
 }
-
-export default App;
