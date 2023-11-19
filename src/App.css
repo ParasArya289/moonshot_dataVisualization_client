@@ -12,8 +12,3 @@
 .rdrDefinedRangesWrapper {
   display: none;
 }
-@media (max-width: 600px) {
-  .App {
-    max-width: 100%;
-  }
-}
