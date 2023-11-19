@@ -12,3 +12,12 @@
 .rdrDefinedRangesWrapper {
   display: none;
 }
+label{
+  color:#717171;
+  margin-left: 10px;
+}
+select{
+  margin-left: 10px;
+  width: 150px;
+  color:#717171
+}
