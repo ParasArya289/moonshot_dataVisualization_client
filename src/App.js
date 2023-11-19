@@ -5,16 +5,17 @@ import { LineChartComponent } from "./Components/LineChartComponent";
 import axios from "axios";
 import { DateRangePicker } from "react-date-range";
 import { filter } from "./Utility";
+import { useSearchParams } from "react-router-dom";
 
 export default function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [date, setDate] = useState({
+  const [searchParams, setSearchParams] = useSearchParams({
     startDate: new Date("2022-10-12"),
     endDate: new Date("2022-10-21"),
+    age: "15-25",
+    gender: "Male",
   });
-  const [age, setAge] = useState("15-25");
-  const [gender, setGender] = useState("Male");
   const [category, setCategory] = useState("a");
   useEffect(() => {
     const fetchData = async () => {
@@ -30,30 +31,66 @@ export default function App() {
     fetchData();
   }, []);
   useEffect(() => {
-    setFilteredData(() => filter(data, date, age, gender));
-  }, [date, data, age, gender]);
+    const dateRange = {
+      startDate: new Date(searchParams.get("startDate")),
+      endDate: new Date(searchParams.get("endDate")),
+    };
+    const ageParams = searchParams.get("age");
+    const genderParams = searchParams.get("gender");
+    setFilteredData(() => filter(data, dateRange, ageParams, genderParams));
+  }, [data,searchParams]);
   return (
     <div className="App">
       <h1>Data Visualizer</h1>
       <div className="filters">
         <DateRangePicker
-          ranges={[date]}
-          onChange={(ranges) => setDate(ranges.range1)}
+          ranges={[
+            {
+              startDate: new Date(searchParams.get("startDate")),
+              endDate: new Date(searchParams.get("endDate")),
+            },
+          ]}
+          onChange={(ranges) => {
+            setSearchParams(
+              (prev) => {
+                prev.set("startDate", ranges.range1.startDate);
+                prev.set("endDate", ranges.range1.endDate);
+                return prev;
+              },
+              { replace: true }
+            );
+          }}
         />
+        <div>
         <label>
           Age:
-          <select onChange={(e) => setAge(e.target.value)}>
+          <select
+            onChange={(e) => {
+              setSearchParams((prev) => {
+                prev.set("age", e.target.value);
+                return prev;
+              });
+            }}
+          >
             <option value="15-25">15-25</option>
             <option value=">25">{">25"}</option>
           </select>
         </label>
         <label>
           Gender:
-          <select onChange={(e) => setGender(e.target.value)}>
+          <select
+            onChange={(e) => {
+              setSearchParams((prev) => {
+                prev.set("gender", e.target.value);
+                return prev;
+              });
+            }}
+          >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </label>
+        </div>
       </div>
       <div className="graphs">
         <BarChartComponent data={filteredData} setCategory={setCategory} />
