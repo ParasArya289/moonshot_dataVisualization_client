@@ -6,6 +6,7 @@ import axios from "axios";
 import { DateRangePicker } from "react-date-range";
 import { filter } from ".././Utility";
 import { useSearchParams } from "react-router-dom";
+import { Navbar } from "../Components/Navbar";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -45,7 +46,7 @@ export default function Home() {
   }, [data, searchParams]);
   return (
     <div className="home">
-      <h1>Data Visualizer</h1>
+      <Navbar />
       <div className="filters">
         <DateRangePicker
           ranges={[
