@@ -3,7 +3,7 @@ import { Login } from "../Components/Login";
 import { Signup } from "../Components/Signup";
 import "./Auth.css";
 export default function Auth() {
-  const [singUpOrLogin, setSignUpOrLogin] = useState("signup");
+  const [singUpOrLogin, setSignUpOrLogin] = useState("login");
   return (
     <div className="auth">
       {singUpOrLogin === "login" ? (
