@@ -32,12 +32,24 @@ export const Login = ({ setSignUpOrLogin }) => {
 
         <label htmlFor="username">
           Username
-          <input type="text" name="username" placeholder="Username" required />
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            required
+            defaultValue={"parasarya"}
+          />
         </label>
 
         <label htmlFor="password">
           Password
-          <input type="text" name="password" placeholder="Password" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            defaultValue={"paras"}
+          />
         </label>
 
         <button disabled={authLoading} type="submit">
