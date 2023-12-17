@@ -3,21 +3,3 @@
   margin: auto;
   padding: 20px;
 }
-.App .filters {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.rdrDefinedRangesWrapper {
-  display: none;
-}
-label{
-  color:#717171;
-  margin-left: 10px;
-}
-select{
-  margin-left: 10px;
-  width: 150px;
-  color:#717171
-}
