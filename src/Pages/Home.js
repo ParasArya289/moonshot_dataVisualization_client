@@ -24,7 +24,7 @@ export default function Home() {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://moonshotdatavisulalizationserver.parasarya2.repl.co/data"
+          "https://moonshot-datavisulalization-server-1.onrender.com/data"
         );
         setData(response.data);
       } catch (error) {
