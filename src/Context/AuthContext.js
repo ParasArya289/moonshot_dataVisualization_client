@@ -37,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
       setToken(request.data.token);
       setUser(request.data.user);
       localStorage.setItem("token",request.data.token);
-      localStorage.setItem("user",request.data.user);
+      localStorage.setItem("user",JSON.stringify(request.data.user));
       return request.data;
     } catch (err) {
       alert(err.response.data.error);
