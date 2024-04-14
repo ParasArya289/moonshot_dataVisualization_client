@@ -19,8 +19,10 @@ export const AuthContextProvider = ({ children }) => {
       setUser(request.data.user);
       localStorage.setItem("token",request.data.token);
       localStorage.setItem("user",JSON.stringify(request.data.user));
+      return request.data
     } catch (err) {
-      alert("Some error occured");
+      alert(err.response.data.error);
+      console.log(err)
     } finally {
       setAuthLoading(false);
     }
@@ -36,9 +38,10 @@ export const AuthContextProvider = ({ children }) => {
       setUser(request.data.user);
       localStorage.setItem("token",request.data.token);
       localStorage.setItem("user",request.data.user);
+      return request.data;
     } catch (err) {
-      alert("Some error occured " + err.message);
-      console.log(err.toJSON())
+      alert(err.response.data.error);
+      console.log(err)
     } finally {
       setAuthLoading(false);
     }
