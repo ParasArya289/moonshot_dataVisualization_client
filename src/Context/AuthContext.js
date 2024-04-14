@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
       setToken(request.data.token);
       setUser(request.data.user);
     } catch (err) {
-      alert("Some error occured");
+      alert("Some error occured " + err.message);
     } finally {
       setAuthLoading(false);
     }
@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
       setToken(request.data.token);
       setUser(request.data.user);
     } catch (err) {
-      alert("Some error occured");
+      alert("Some error occured " + err.message);
     } finally {
       setAuthLoading(false);
     }
