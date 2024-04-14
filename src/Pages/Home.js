@@ -35,15 +35,26 @@ export default function Home() {
     };
     fetchData();
   }, []);
+
   useEffect(() => {
     const dateRange = {
-      startDate: new Date(searchParams.get("startDate")),
-      endDate: new Date(searchParams.get("endDate")),
+      startDate: new Date(searchParams.get("startDate")) || JSON.parse(localStorage.getItem("filters")).startDate,
+      endDate: new Date(searchParams.get("endDate")) || JSON.parse(localStorage.getItem("filters")).endDate,
     };
-    const ageParams = searchParams.get("age");
-    const genderParams = searchParams.get("gender");
+    const ageParams = searchParams.get("age") || JSON.parse(localStorage.getItem("filters")).age;
+    const genderParams = searchParams.get("gender") || JSON.parse(localStorage.getItem("filters")).gender;
+
+
+    localStorage.setItem("filters", JSON.stringify({
+      startDate: dateRange.startDate,
+      endDate: dateRange.endDate,
+      age: ageParams,
+      gender: genderParams,
+    }))
+
     setFilteredData(() => filter(data, dateRange, ageParams, genderParams));
   }, [data, searchParams]);
+  
   return (
     <div className="home">
       <Navbar />
