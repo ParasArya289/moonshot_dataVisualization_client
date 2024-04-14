@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
       setUser(request.data.user);
     } catch (err) {
       alert("Some error occured " + err.message);
+      console.log(err.toJSON())
     } finally {
       setAuthLoading(false);
     }
@@ -34,6 +35,7 @@ export const AuthContextProvider = ({ children }) => {
       setUser(request.data.user);
     } catch (err) {
       alert("Some error occured " + err.message);
+      console.log(err.toJSON())
     } finally {
       setAuthLoading(false);
     }
