@@ -4,8 +4,8 @@ import { createContext, useContext, useState } from "react";
 const authContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [authLoading, setAuthLoading] = useState(false);
 
   const loginUser = async (userData) => {
@@ -17,9 +17,10 @@ export const AuthContextProvider = ({ children }) => {
       );
       setToken(request.data.token);
       setUser(request.data.user);
+      localStorage.setItem("token",request.data.token);
+      localStorage.setItem("user",JSON.stringify(request.data.user));
     } catch (err) {
-      alert("Some error occured " + err.message);
-      console.log(err.toJSON())
+      alert("Some error occured");
     } finally {
       setAuthLoading(false);
     }
@@ -33,6 +34,8 @@ export const AuthContextProvider = ({ children }) => {
       );
       setToken(request.data.token);
       setUser(request.data.user);
+      localStorage.setItem("token",request.data.token);
+      localStorage.setItem("user",request.data.user);
     } catch (err) {
       alert("Some error occured " + err.message);
       console.log(err.toJSON())
@@ -43,6 +46,8 @@ export const AuthContextProvider = ({ children }) => {
   const logoutUser = () => {
     setToken("");
     setUser({});
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
   return (
     <authContext.Provider
