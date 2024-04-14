@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       setAuthLoading(true);
       const request = await axios.post(
-        "https://moonshotdatavisulalizationserver.parasarya2.repl.co/user/login",
+        "https://moonshot-datavisulalization-server-1.onrender.com/user/login",
         userData
       );
       setToken(request.data.token);
@@ -27,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       setAuthLoading(true);
       const request = await axios.post(
-        "https://moonshotdatavisulalizationserver.parasarya2.repl.co/user/signup",
+        "https://moonshot-datavisulalization-server-1.onrender.com/user/signup",
         userData
       );
       setToken(request.data.token);
